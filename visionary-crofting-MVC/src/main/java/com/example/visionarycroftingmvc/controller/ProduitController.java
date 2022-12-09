@@ -29,7 +29,7 @@ public class ProduitController {
     @GetMapping
     public String getAllProduits(Model model){
         model.addAttribute("produits",produitService.getAllProduits());
-        return "produits";
+        return "index";
 }
 
     @GetMapping("/produit/{produitId}")

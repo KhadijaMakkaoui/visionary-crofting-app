@@ -2,11 +2,13 @@ package com.example.visionarycroftingmvc.controller;
 
 import com.example.visionarycroftingmvc.entity.Produit;
 import com.example.visionarycroftingmvc.service.ProduitService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/produits")
 public class ProduitController {
 
@@ -25,7 +27,10 @@ public class ProduitController {
     }
 
     @GetMapping
-    public List<Produit> getAllProduits(){ return produitService.getAllProduits(); }
+    public String getAllProduits(Model model){
+        model.addAttribute("produits",produitService.getAllProduits());
+        return "produits";
+}
 
     @GetMapping("/produit/{produitId}")
     public Produit getProduitById(@PathVariable Long produitId){ return produitService.getProduitById(produitId); }

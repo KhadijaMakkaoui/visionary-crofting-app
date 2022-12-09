@@ -19,7 +19,7 @@ public class AppelOffreController {
 /*
         model.addAttribute("appelOffres",appelOffreService.getAppelOffres());
 */
-        return "test";
+        return "produits";
     }
     /*@PostMapping
     public void addAppelOffre(@RequestBody AppelOffre appelOffre){

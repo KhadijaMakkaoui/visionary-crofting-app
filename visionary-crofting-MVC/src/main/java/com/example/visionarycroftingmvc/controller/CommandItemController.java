@@ -1,13 +1,10 @@
 package com.example.visionarycroftingmvc.controller;
 
 import com.example.visionarycroftingmvc.entity.Commande;
-import com.example.visionarycroftingmvc.entity.CommandeItems;
-import com.example.visionarycroftingmvc.entity.Produit;
-import com.example.visionarycroftingmvc.entity.StatusCommande;
+import com.example.visionarycroftingmvc.entity.CommandeItem;
 import com.example.visionarycroftingmvc.service.IService.ICommandeItemService;
 import com.example.visionarycroftingmvc.service.IService.ICommandeService;
 import com.example.visionarycroftingmvc.service.IService.IProduitService;
-import com.example.visionarycroftingmvc.utils.GenerateReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -34,18 +30,20 @@ public class CommandItemController {
 
 
     @GetMapping("/all_items")
-    public List<CommandeItems> findAll(){
+    public List<CommandeItem> findAll(){
         return commandeItemService.findAll();
     }
 
-    @PostMapping("add")
-    public void save(@Valid CommandeItems commandeItems, @PathVariable Long produit_id, BindingResult result, Model model){
+    @PostMapping("produit")
+    public String save(@RequestParam(value = "id") int id_produit, BindingResult result, Model model){
+
         if (result.hasErrors()) {
-            commandeItems.setProduit(produitService.getProduitById(produit_id));
+            commandeItems.setProduit(produitService.getProduitById(produit.getId()));
             model.addAttribute("commandeItems", commandeItems);
-            return;
+            return "index";
         }
-        commandeItemService.save(commandeItems);
+        commandeItemService.addProductToCommandeItem(commandeItems);
+        return "index";
     }
 
    /* Produit produit1 = produitService.getProduitById(produit_id);
@@ -86,7 +84,7 @@ public class CommandItemController {
     }
 
     @GetMapping("/quantity/{quantity}")
-    public List<CommandeItems> getCommandeItemByQuantityGreaterThan(@PathVariable int quantity){
+    public List<CommandeItem> getCommandeItemByQuantityGreaterThan(@PathVariable int quantity){
         return commandeItemService.getCommandeItemByQuantityGreaterThan(quantity);
     }
 

@@ -1,6 +1,6 @@
 package com.example.visionarycroftingmvc.service;
 
-import com.example.visionarycroftingmvc.entity.CommandeItems;
+import com.example.visionarycroftingmvc.entity.CommandeItem;
 import com.example.visionarycroftingmvc.repository.ICommandeItemRepository;
 import com.example.visionarycroftingmvc.service.IService.ICommandeItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,8 @@ public class CommandeItemService implements ICommandeItemService {
     ICommandeItemRepository commandeItemRepository;
 
     @Override
-    public CommandeItems save(CommandeItems commandeItems) {
-        return commandeItemRepository.save(commandeItems);
+    public CommandeItem addProductToCommandeItem(CommandeItem commandeItem) {
+        return commandeItemRepository.save(commandeItem);
     }
 
     @Override
@@ -24,17 +24,17 @@ public class CommandeItemService implements ICommandeItemService {
     }
 
     @Override
-    public CommandeItems findByRef(String ref) {
+    public CommandeItem findByRef(String ref) {
         return commandeItemRepository.findCommandeItemsByReference(ref);
     }
 
     @Override
-    public List<CommandeItems> findAll() {
+    public List<CommandeItem> findAll() {
         return commandeItemRepository.findAll();
     }
 
     @Override
-    public List<CommandeItems> getCommandeItemByQuantityGreaterThan(int quantity) {
+    public List<CommandeItem> getCommandeItemByQuantityGreaterThan(int quantity) {
         return commandeItemRepository.findCommandeItemsByQuantityGreaterThan(quantity);
     }
 }

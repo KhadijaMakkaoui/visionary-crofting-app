@@ -26,7 +26,7 @@ public class Produit {
     private Stock stock;
 
     @OneToMany (mappedBy = "produit")
-    private List<CommandeItems> commandeItems = new ArrayList<>();
+    private List<CommandeItem> commandeItems = new ArrayList<>();
 
     public Produit() { }
 
@@ -52,7 +52,7 @@ public class Produit {
         this.stock = stock;
     }
     @JsonSetter
-    public void setCommandeItems(List<CommandeItems> commandeItems) {
+    public void setCommandeItems(List<CommandeItem> commandeItems) {
         this.commandeItems = commandeItems;
     }
 
@@ -67,7 +67,7 @@ public class Produit {
         return stock;
     }
     @JsonIgnore
-    public List<CommandeItems> getCommandeItems() {
+    public List<CommandeItem> getCommandeItems() {
         return commandeItems;
     }
 

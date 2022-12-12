@@ -28,7 +28,7 @@ public class Commande implements Serializable {
     private StatusCommande status ;
 
     @OneToMany(mappedBy = "commande", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<CommandeItems> commandeItems = new ArrayList<>();
+    private List<CommandeItem> commandeItems = new ArrayList<>();
 
     @ManyToOne
     private Client client ;
@@ -74,11 +74,11 @@ public class Commande implements Serializable {
         this.status = status;
     }
 
-    public List<CommandeItems> getCommandeItems() {
+    public List<CommandeItem> getCommandeItems() {
         return commandeItems;
     }
 
-    public void setCommandeItems(List<CommandeItems> commandeItems) {
+    public void setCommandeItems(List<CommandeItem> commandeItems) {
         this.commandeItems = commandeItems;
     }
 

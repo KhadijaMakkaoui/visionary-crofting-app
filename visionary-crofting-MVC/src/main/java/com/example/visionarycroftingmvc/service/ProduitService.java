@@ -1,6 +1,6 @@
 package com.example.visionarycroftingmvc.service;
 
-import com.example.visionarycroftingmvc.entity.CommandeItems;
+import com.example.visionarycroftingmvc.entity.CommandeItem;
 import com.example.visionarycroftingmvc.entity.Produit;
 import com.example.visionarycroftingmvc.repository.IproduitRepository;
 import com.example.visionarycroftingmvc.service.IService.IProduitService;
@@ -47,8 +47,8 @@ public class ProduitService implements IProduitService {
     }
 
 
-    public void updateProduitQuantity(Produit produit1, CommandeItems commandeItems){
-        produit1.setQuantity(produit1.getQuantity()-commandeItems.getQuantity());
+    public void updateProduitQuantity(Produit produit1, CommandeItem commandeItem){
+        produit1.setQuantity(produit1.getQuantity()- commandeItem.getQuantity());
         addProduit(produit1);
     }
 }

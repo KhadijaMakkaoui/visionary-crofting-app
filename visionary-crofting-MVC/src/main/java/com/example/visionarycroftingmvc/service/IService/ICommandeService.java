@@ -1,7 +1,7 @@
 package com.example.visionarycroftingmvc.service.IService;
 
 import com.example.visionarycroftingmvc.entity.Commande;
-import com.example.visionarycroftingmvc.entity.CommandeItems;
+import com.example.visionarycroftingmvc.entity.CommandeItem;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,5 +15,5 @@ public interface ICommandeService {
     Commande findByReference(String ref);
     List<Commande> findEffectuedCommands();
     void updateCommandePrix(Commande commande);
-    void saveCommandeItems(Commande commande , List<CommandeItems> commandeItems);
+    void saveCommandeItems(Commande commande , List<CommandeItem> commandeItems);
 }

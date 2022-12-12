@@ -1,7 +1,7 @@
 package com.example.visionarycroftingmvc.service;
 
 import com.example.visionarycroftingmvc.entity.Commande;
-import com.example.visionarycroftingmvc.entity.CommandeItems;
+import com.example.visionarycroftingmvc.entity.CommandeItem;
 import com.example.visionarycroftingmvc.entity.StatusCommande;
 import com.example.visionarycroftingmvc.repository.ICommandeRepository;
 import com.example.visionarycroftingmvc.service.IService.ICommandeService;
@@ -43,9 +43,9 @@ public class CommandeService implements ICommandeService {
     }
 
     public void updateCommandePrix( Commande commande){
-        List<CommandeItems> items= commande.getCommandeItems();
+        List<CommandeItem> items= commande.getCommandeItems();
         Float prix= (float) 0;
-        for(CommandeItems item : items){
+        for(CommandeItem item : items){
             System.out.println(item.getReference());
             prix+=item.getPrix();
         }
@@ -55,7 +55,7 @@ public class CommandeService implements ICommandeService {
     }
 
     @Override
-    public void saveCommandeItems(Commande commande, List<CommandeItems> commandeItems) {
+    public void saveCommandeItems(Commande commande, List<CommandeItem> commandeItems) {
         commandeRepository.save(commande);
     }
 

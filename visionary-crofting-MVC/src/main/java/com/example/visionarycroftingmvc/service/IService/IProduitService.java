@@ -1,6 +1,6 @@
 package com.example.visionarycroftingmvc.service.IService;
 
-import com.example.visionarycroftingmvc.entity.CommandeItems;
+import com.example.visionarycroftingmvc.entity.CommandeItem;
 import com.example.visionarycroftingmvc.entity.Produit;
 
 
@@ -13,6 +13,6 @@ public interface IProduitService {
     Produit getProduitById(Long id);
     List<Produit> getAllProduits();
     List<Produit> findProuitsByCategory(int category);
-    void updateProduitQuantity(Produit produit1, CommandeItems commandeItems);
+    void updateProduitQuantity(Produit produit1, CommandeItem commandeItem);
 
 }

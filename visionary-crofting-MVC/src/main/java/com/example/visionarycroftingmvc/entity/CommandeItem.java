@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "commandeItems")
-public class CommandeItems implements Serializable {
+@Table(name = "commandeItem")
+public class CommandeItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", nullable = false)

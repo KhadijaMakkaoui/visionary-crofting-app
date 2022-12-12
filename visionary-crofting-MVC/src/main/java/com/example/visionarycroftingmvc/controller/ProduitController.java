@@ -16,6 +16,26 @@ public class ProduitController {
 
     public ProduitController(ProduitService produitService) { this.produitService = produitService; }
 
+    @GetMapping
+    public String getAllProduits(Model model){
+        model.addAttribute("produits",produitService.getAllProduits());
+        return "index";
+    }
+
+
+
+    @GetMapping("{id}")
+    public String getProduitById(@PathVariable("id") Long produitId,Model model) {
+        model.addAttribute("produit", produitService.getProduitById(produitId));
+        return "product-details";
+    }
+
+   /* @GetMapping("/{category}")
+    public List<Produit> getAllProduitsByCategory(@PathVariable int category){
+
+        return produitService.findProuitsByCategory(category);
+
+    }*/
     @PostMapping
     public Produit addProduit(@RequestBody Produit produit){
         return produitService.addProduit(produit);
@@ -24,22 +44,6 @@ public class ProduitController {
     @PutMapping
     public Produit updateProduit(@RequestBody Produit produit, @PathVariable Long produitId){
         return produitService.updateProduit(produit, produitId);
-    }
-
-    @GetMapping
-    public String getAllProduits(Model model){
-        model.addAttribute("produits",produitService.getAllProduits());
-        return "index";
-}
-
-    @GetMapping("/produit/{produitId}")
-    public Produit getProduitById(@PathVariable Long produitId){ return produitService.getProduitById(produitId); }
-
-    @GetMapping("/{category}")
-    public List<Produit> getAllProduitsByCategory(@PathVariable int category){
-
-        return produitService.findProuitsByCategory(category);
-
     }
 
 }

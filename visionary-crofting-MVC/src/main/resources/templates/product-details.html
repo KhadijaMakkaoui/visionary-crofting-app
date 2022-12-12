@@ -205,76 +205,87 @@
                             <div class="carousel-inner">
                                 <div class="item active carousel-item">
                                     <div class="item-carousel-wrap zoom" data-zoom="assets/img/slide-bg-1.jpg">
-                                        <img src="assets/img/slide-bg-1.jpg" alt="product-details">
+                                        <img src="/assets/img/slide-bg-1.jpg" alt="product-details">
                                     </div>
                                 </div>
                                 <div class="item carousel-item">
                                     <div class="item-carousel-wrap zoom" data-zoom="assets/img/slide-bg-5.jpg">
-                                        <img src="assets/img/slide-bg-5.jpg" alt="product-details">
+                                        <img src="/assets/img/slide-bg-5.jpg" alt="product-details">
                                     </div>
                                 </div>
                                 <div class="item carousel-item">
                                     <div class="item-carousel-wrap zoom" data-zoom="assets/img/slide-bg-6.jpg">
-                                        <img src="assets/img/slide-bg-6.jpg" alt="product-details">
+                                        <img src="/assets/img/slide-bg-6.jpg" alt="product-details">
                                     </div>
                                 </div>
                                 <div class="item carousel-item">
                                     <div class="item-carousel-wrap zoom" data-zoom="assets/img/slide-bg-3.jpg">
-                                        <img src="assets/img/slide-bg-3.jpg" alt="product-details">
+                                        <img src="/assets/img/slide-bg-3.jpg" alt="product-details">
                                     </div>
                                 </div>
                             </div>
                             <ol class="carousel-indicators">
                                 <li data-target="#quote-carousel" data-slide-to="0">
-                                    <img src="assets/img/slide-bg-1.jpg" alt="product">
+                                    <img src="/assets/img/slide-bg-1.jpg" alt="product">
                                 </li>
                                 <li data-target="#quote-carousel" data-slide-to="1">
-                                    <img src="assets/img/slide-bg-5.jpg" alt="product">
+                                    <img src="/assets/img/slide-bg-5.jpg" alt="product">
                                 </li>
                                 <li data-target="#quote-carousel" data-slide-to="2">
-                                    <img src="assets/img/slide-bg-6.jpg" alt="product">
+                                    <img src="/assets/img/slide-bg-6.jpg" alt="product">
                                 </li>
                                 <li data-target="#quote-carousel" data-slide-to="3">
-                                    <img src="assets/img/slide-bg-3.jpg" alt="product">
+                                    <img src="/assets/img/slide-bg-3.jpg" alt="product">
                                 </li>
                             </ol>
                         </div>
                     </div>
-                    <!---- --------------------------------------------------->
-                    <div class="col-md-7">
-                        <!--<form th:action="${commandeItem} ? @{/commandeItem/add} : @{/commandeItem/{id} (id=${p.getId()})}"
-                              th:object="${produit}" method="POST">
--->                        <div class="product-details-content pb-75">
+                    <!---- th:each="p : ${produit}"--------------------------------------------------->
+                    <div th:each="p : ${produit}" class="col-md-7">
+                        <form action="@{/commandeItem/add}" th:object="${p}" method="POST" >
+                             <div class="product-details-content pb-75">
                             <div class="product-details-left">
                                 <div class="product-details-title">
-                                    <h3>Product Name Will be here</h3>
+                                    <input type="text" th:value="${p.getId()}" name="id" th:style="${'display:none'}">
+
+                                    <h3 th:text="${p.getNom()}">
+
+                                        </h3>
+<!--
+                                    <input type="text" th:value="${p.getNom()}" name="nom" th:style="${'display:none'}">
+-->
                                 </div>
                                 <div class="product-details-price">
-                                    <p>$50.00<del>(5% off)</del></p>
+                                    <span th:text="${p.getPrix_initial()}"></span><span> DH</span>
+<!--
+                                    <input type="text" th:value="${p.getPrix_initial()}" name="prix_initial">
+-->
+
                                 </div>
-                                <div class="review-star">
+                               <!-- <div class="review-star">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                </div>
+                                </div>-->
                                 <div class="product-details-category">
-                                    <p>In Stock</p>
+                                    Quantity: <span th:text="${p.getQuantity()}"></span>
+<!--
+                                    <input type="text" th:value="${p.getQuantity()}" name="quantity">
+-->
                                 </div>
                             </div>
                             <div class="product-icon">
                                 <a href="#"><i class="fa fa-heart-o"></i></a>
                                 <a href="#"><i class="fa fa-share-alt"></i></a>
                             </div>
-                            <div class="product-details-btn">
-                                <a href="#" class="krishok-btn">Buy Now <i class="fa fa-shopping-cart"></i></a>
-                                <a href="#" class="krishok-btn krishok-btn-transparent">Add to List <i class="fa fa-heart-o"></i></a>
-                            </div>
+
                             <div class="product-details-descrip">
                                 <h3>Description</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                <p th:text="${p.getDescription()}"></p>
                                 <a href="#" class="review-btn">write a review</a>
+<!--
 								<form action="#" class="product-details-form">
 									<input type="text" placeholder="Write your review"/>
 									<div class="dropdowns-select">
@@ -288,8 +299,18 @@
 									</div>
 									<button class="krishok-btn">Send Review</button>
 								</form>
+-->
                             </div>
-                        </div>
+                            <div class="product-details-btn">
+                                <a href="#" class="krishok-btn">Buy Now <i class="fa fa-shopping-cart"></i></a>
+<!--
+                                <input type="submit"  class="krishok-btn krishok-btn-transparent">Add to List <i class="fa fa-heart-o"></i></input>
+-->
+                                <input type="submit"  class="krishok-btn krishok-btn-transparent">Add to List <i class="fa fa-heart-o"></i></input>
+
+                            </div>
+                            </div>
+                        </form>
                     </div>
 				</div>
 			</div>

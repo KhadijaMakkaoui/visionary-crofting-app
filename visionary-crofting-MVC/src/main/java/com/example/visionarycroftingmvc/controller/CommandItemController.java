@@ -38,7 +38,7 @@ public class CommandItemController {
         return commandeItemService.findAll();
     }
 
-    @PostMapping("/{produit_id}")
+    @PostMapping("add")
     public void save(@Valid CommandeItems commandeItems, @PathVariable Long produit_id, BindingResult result, Model model){
         if (result.hasErrors()) {
             commandeItems.setProduit(produitService.getProduitById(produit_id));

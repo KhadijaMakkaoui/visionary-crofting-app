@@ -268,7 +268,7 @@
 								</div>
 								<div class="product-details">
 									<div class="product-info">
-										<a th:href="@{/produits/{id}(id=${p.getId()})}"><h4 th:text="${p.getNom()}"></h4></a>
+										<a  th:href="@{/produits/{id}(id=${p.id})}"><h4 th:text="${p.getNom()}"></h4></a>
 										<p th:text="${p.getDescription()}"></p>
 										<span class="price">Prix : <strong th:text="${p.getPrix_initial()}"></strong>DH</span>
 										<br>

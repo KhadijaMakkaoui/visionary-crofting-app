@@ -242,13 +242,11 @@
                     </div>
                     <!---- th:each="p : ${produit}"--------------------------------------------------->
                     <div th:each="p : ${produit}" class="col-md-7">
-<!--
-                        <form th:action="@{/commandeItem/add}" th:object="${p}" method="POST" >
--->
+                        <form th:action="@{/commandeItem/add}"  method="POST" >
                              <div class="product-details-content pb-75">
                             <div class="product-details-left">
                                 <div class="product-details-title">
-                                    <input type="text" th:value="${p.getId()}" name="id" th:style="${'display:none'}">
+                                    <input type="text" th:value="${p.getId()}" name="produit" th:style="${'display:none'}">
 
                                     <h3 th:text="${p.getNom()}">
 
@@ -305,16 +303,14 @@
                             </div>
                             <div class="product-details-btn">
                                 <a href="#" class="krishok-btn">Buy Now <i class="fa fa-shopping-cart"></i></a>
-<!--
                                 <input type="submit"  class="krishok-btn krishok-btn-transparent">Add to List <i class="fa fa-heart-o"></i></input>
--->
+<!--
                                 <a th:href="@{/commandeItem/produit?id=${p.getId()}}"  class="krishok-btn krishok-btn-transparent">Add to Commande <i class="fa fa-heart-o"></i></a>
+-->
 
                             </div>
                             </div>
-<!--
                         </form>
--->
                     </div>
 				</div>
 			</div>

@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/commandeItems")
+@RequestMapping("/commandeItem")
 public class CommandItemController {
 
     @Autowired
@@ -34,16 +34,18 @@ public class CommandItemController {
         return commandeItemService.findAll();
     }
 
-    @PostMapping("produit")
-    public String save(@RequestParam(value = "id") int id_produit, BindingResult result, Model model){
+    @PostMapping("/add")
+    public String add(CommandeItem commandeItem, Model model){
 
-        if (result.hasErrors()) {
+        /*if (result.hasErrors()) {
             commandeItems.setProduit(produitService.getProduitById(produit.getId()));
             model.addAttribute("commandeItems", commandeItems);
             return "index";
         }
-        commandeItemService.addProductToCommandeItem(commandeItems);
-        return "index";
+        commandeItemService.addProductToCommandeItem(commandeItems);*/
+        System.out.println(commandeItem.getProduit().getNom());
+        commandeItemService.addProductToCommandeItem(commandeItem);
+        return "card";
     }
 
    /* Produit produit1 = produitService.getProduitById(produit_id);

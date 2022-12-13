@@ -26,7 +26,7 @@
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Name</p>
-                  <p th:text="${c.getProduit()}" class="lead fw-normal mb-0"></p>
+                  <p th:text="${(c.getProduit()).getNom()}" class="lead fw-normal mb-0"></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
@@ -43,14 +43,14 @@
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
-                  <p class="small text-muted mb-4 pb-2">Price</p>
-                  <p th:text="${c.getPrix()}" class="lead fw-normal mb-0"></p>
+                  <p class="small text-muted mb-4 pb-2">Unit Price</p>
+                  <p th:text="${(c.getProduit()).getPrix_initial()}" class="lead fw-normal mb-0"></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Total</p>
-                  <p class="lead fw-normal mb-0">$799</p>
+                  <p th:text="${c.getPrix()}+ DH" class="lead fw-normal mb-0"></p>
                 </div>
               </div>
             </div>

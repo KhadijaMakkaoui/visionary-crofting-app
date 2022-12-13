@@ -22,7 +22,7 @@ public class CommandeItem implements Serializable {
     @Min(value = 0, message = "Price must be positive")
     private Float prix;
     @NotNull
-    @Min(value = 0, message = "Quantity must be positive")
+    @Min(value = 1, message = "Quantity must be positive")
     private int quantity;
 
     @ManyToOne

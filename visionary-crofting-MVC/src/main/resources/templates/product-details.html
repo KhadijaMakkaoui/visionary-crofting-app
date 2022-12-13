@@ -258,6 +258,7 @@
                                     <div class="product-details-category">
                                         Quantity in stock: <span th:text="${p.getQuantity()}"></span>
                                     </div>
+
                                 </div>
                                 <div class="product-icon">
                                     <a href="#"><i class="fa fa-heart-o"></i></a>
@@ -269,11 +270,23 @@
                                     <p th:text="${p.getDescription()}"></p>
 
                                 </div>
+                                <div class="product-details-quantity">
+                                    <div class="product-details-quantity-title">
+                                        Quantity:
+                                    </div>
+                                    <div class="product-details-quantity-input">
+                                        <input type="number" th:value="0"  name="quantity" />
+<!--
+                                        <p class="error" th:errors="quantity"></p>
+-->
+
+                                    </div>
                                 <div class="product-details-btn">
                                     <a href="#" class="krishok-btn">Buy Now <i class="fa fa-shopping-cart"></i></a>
                                     <input type="submit" value="Add to List"  class="krishok-btn krishok-btn-transparent"/>
 
                                 </div>
+                            </div>
                             </div>
                         </form>
                     </div>

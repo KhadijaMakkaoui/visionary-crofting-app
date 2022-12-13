@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -37,7 +39,11 @@ public class CommandItemController {
     }
 
     @PostMapping("/add")
-    public String add(CommandeItem commandeItem, BindingResult bindingResult, Model model){
+    public String add(@Valid CommandeItem commandeItem, BindingResult bindingResult, Model model, RedirectAttributes atts){
+        if(bindingResult.hasErrors()){
+            atts.addAttribute("id",commandeItem.getProduit().getId());
+            return "redirect:/produits/{id}";
+        }
         commandeItemService.addProductToCommandeItem(commandeItem);
         //redirect to controller
         return "redirect:/commandeItem/all_items";

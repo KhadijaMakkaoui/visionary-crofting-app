@@ -4,6 +4,7 @@ import com.example.visionarycroftingmvc.entity.CommandeItem;
 import com.example.visionarycroftingmvc.entity.Produit;
 import com.example.visionarycroftingmvc.repository.ICommandeItemRepository;
 import com.example.visionarycroftingmvc.service.IService.ICommandeItemService;
+import com.example.visionarycroftingmvc.utils.GenerateReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,6 @@ public class CommandeItemService implements ICommandeItemService {
     public CommandeItem addProductToCommandeItem(CommandeItem commandeItem) {
         if(commandeItem.getQuantity()<=0 ){
             throw new RuntimeException("Quantity must bigger than 0");
-        }
-        if(commandeItem.getPrix()<=0){
-            throw new RuntimeException("Price must be bigger than 0");
         }
         if(commandeItem.getProduit()==null || commandeItem.getProduit()==new Produit()){
             throw new RuntimeException("Produit is null or empty");
@@ -48,6 +46,8 @@ public class CommandeItemService implements ICommandeItemService {
                         commandeItem1.setPrix(commandeItem1.getProduit().getPrix_initial() * commandeItem1.getQuantity());
                         return commandeItemRepository.save(commandeItem1);
                     } else {
+                        commandeItem.setReference(GenerateReference.applyGenerateReference());
+                        System.out.println("Reference: " + commandeItem.getReference());
                         commandeItem.setPrix(commandeItem.getProduit().getPrix_initial()*commandeItem.getQuantity());
                         //save commandeItem
                         return commandeItemRepository.save(commandeItem);

@@ -19,6 +19,7 @@ public class CommandeItem implements Serializable {
     @Column(unique = true)
     private String reference;
     @NotNull
+    @Column(columnDefinition = "int default 0")
     @Min(value = 0, message = "Price must be positive")
     private Float prix;
     @NotNull

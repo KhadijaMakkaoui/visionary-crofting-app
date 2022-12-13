@@ -15,37 +15,36 @@
       <div class="col">
         <p><span class="h2">Shopping Cart </span><span class="h4">(1 item in your cart)</span></p>
 
-        <div class="card mb-4">
+        <div th:each="c : ${commandeItems}" class="card mb-4">
           <div class="card-body p-4">
 
             <div class="row align-items-center">
-              <div class="col-md-2">
+             <!-- <div class="col-md-2">
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/1.webp"
                      class="img-fluid" alt="Generic placeholder image">
-              </div>
+              </div>-->
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Name</p>
-                  <p class="lead fw-normal mb-0">iPad Air</p>
+                  <p th:text="${c.getProduit()}" class="lead fw-normal mb-0"></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
-                  <p class="small text-muted mb-4 pb-2">Color</p>
-                  <p class="lead fw-normal mb-0"><i class="fas fa-circle me-2" style="color: #fdd8d2;"></i>
-                    pink rose</p>
+                  <p class="small text-muted mb-4 pb-2">Reference</p>
+                  <p th:text="${c.getReference()}" class="lead fw-normal mb-0"><i class="fas fa-circle me-2" style="color: #fdd8d2;"></i></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Quantity</p>
-                  <p class="lead fw-normal mb-0">1</p>
+                  <p th:text="${c.getQuantity()}" class="lead fw-normal mb-0"></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Price</p>
-                  <p class="lead fw-normal mb-0">$799</p>
+                  <p th:text="${c.getPrix()}" class="lead fw-normal mb-0"></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
@@ -57,6 +56,7 @@
             </div>
 
           </div>
+
         </div>
 
         <div class="card mb-5">
@@ -74,7 +74,7 @@
 
         <div class="d-flex justify-content-end">
           <button type="button" class="btn btn-light btn-lg me-2">Continue shopping</button>
-          <button type="button" class="btn btn-primary btn-lg">Add to cart</button>
+          <button type="button" class="btn btn-primary btn-lg">Passer la commande</button>
         </div>
 
       </div>

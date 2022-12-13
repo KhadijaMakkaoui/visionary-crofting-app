@@ -6,6 +6,7 @@ import com.example.visionarycroftingmvc.service.IService.ICommandeItemService;
 import com.example.visionarycroftingmvc.service.IService.ICommandeService;
 import com.example.visionarycroftingmvc.service.IService.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +31,17 @@ public class CommandItemController {
 
 
     @GetMapping("/all_items")
-    public List<CommandeItem> findAll(){
-        return commandeItemService.findAll();
+    public String getAll(Model model){
+        model.addAttribute("commandeItems",commandeItemService.findAll());
+        return "card";
     }
 
     @PostMapping("/add")
-    public String add(CommandeItem commandeItem){
+    public String add(CommandeItem commandeItem, BindingResult bindingResult, Model model){
         commandeItemService.addProductToCommandeItem(commandeItem);
-        return "card";
+        //redirect to controller
+        return "redirect:/commandeItem/all_items";
+
     }
 
    /* Produit produit1 = produitService.getProduitById(produit_id);

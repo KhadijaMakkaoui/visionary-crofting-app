@@ -15,6 +15,10 @@ public class CommandeItemService implements ICommandeItemService {
 
     @Override
     public CommandeItem addProductToCommandeItem(CommandeItem commandeItem) {
+        if(commandeItem.getQuantity() > commandeItem.getProduit().getQuantity()){
+            throw new RuntimeException("Quantity is not available");
+        }
+
         return commandeItemRepository.save(commandeItem);
     }
 

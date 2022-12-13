@@ -2,8 +2,10 @@ package com.example.visionarycroftingmvc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 @Entity
@@ -16,14 +18,16 @@ public class CommandeItem implements Serializable {
 
     @Column(unique = true)
     private String reference;
-
+    @NotNull
+    @Min(value = 0, message = "Price must be positive")
     private Float prix;
-
+    @NotNull
+    @Min(value = 0, message = "Quantity must be positive")
     private int quantity;
 
     @ManyToOne
     private Commande commande;
-
+    @NotNull
     @ManyToOne
     private Produit produit;
 

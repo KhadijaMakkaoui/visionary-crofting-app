@@ -35,15 +35,7 @@ public class CommandItemController {
     }
 
     @PostMapping("/add")
-    public String add(CommandeItem commandeItem, Model model){
-
-        /*if (result.hasErrors()) {
-            commandeItems.setProduit(produitService.getProduitById(produit.getId()));
-            model.addAttribute("commandeItems", commandeItems);
-            return "index";
-        }
-        commandeItemService.addProductToCommandeItem(commandeItems);*/
-        System.out.println(commandeItem.getProduit().getNom());
+    public String add(CommandeItem commandeItem){
         commandeItemService.addProductToCommandeItem(commandeItem);
         return "card";
     }

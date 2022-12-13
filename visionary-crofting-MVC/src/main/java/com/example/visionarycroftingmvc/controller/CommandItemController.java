@@ -40,6 +40,10 @@ public class CommandItemController {
 
     @PostMapping("/add")
     public String add(@Valid CommandeItem commandeItem, BindingResult bindingResult, Model model, RedirectAttributes atts){
+        //check if commandeItem is null
+        if(commandeItem == null || commandeItem==new CommandeItem()){
+            throw new RuntimeException("CommandeItem is null");
+        }
         if(bindingResult.hasErrors()){
             atts.addAttribute("id",commandeItem.getProduit().getId());
             return "redirect:/produits/{id}";

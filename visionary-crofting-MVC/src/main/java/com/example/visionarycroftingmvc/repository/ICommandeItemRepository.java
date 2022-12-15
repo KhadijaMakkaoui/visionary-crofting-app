@@ -13,4 +13,5 @@ public interface ICommandeItemRepository extends JpaRepository<CommandeItem,Long
     public CommandeItem findCommandeItemByReference(String reference);
     public List<CommandeItem> findCommandeItemByQuantityGreaterThan(int quantity);
     public CommandeItem findCommandeItemByProduitId(Long id);
+
 }

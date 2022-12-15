@@ -41,6 +41,9 @@ public class CommandeItemService implements ICommandeItemService {
                         //get the commandeItem containing the product
                         CommandeItem commandeItem1 = commandeItemRepository.findCommandeItemByProduitId(commandeItem.getProduit().getId());
                         //update the quantity
+                        if((commandeItem1.getQuantity() + commandeItem.getQuantity())>commandeItem.getProduit().getQuantity()){
+                            throw new RuntimeException("Quantity is not available in stock");
+                        }
                         commandeItem1.setQuantity(commandeItem1.getQuantity() + commandeItem.getQuantity());
                         //update the price
                         commandeItem1.setPrix(commandeItem1.getProduit().getPrix_initial() * commandeItem1.getQuantity());
@@ -78,4 +81,6 @@ public class CommandeItemService implements ICommandeItemService {
     public List<CommandeItem> getCommandeItemByQuantityGreaterThan(int quantity) {
         return commandeItemRepository.findCommandeItemByQuantityGreaterThan(quantity);
     }
+
+
 }

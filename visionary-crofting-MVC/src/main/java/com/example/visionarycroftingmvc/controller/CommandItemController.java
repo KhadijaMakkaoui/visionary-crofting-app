@@ -35,6 +35,9 @@ public class CommandItemController {
     @GetMapping("/all_items")
     public String getAll(Model model){
         model.addAttribute("commandeItems",commandeItemService.findAll());
+/*
+        model.addAttribute("countOfCommandeItems",commandeItemService.countCommandeItem());
+*/
         return "card";
     }
 

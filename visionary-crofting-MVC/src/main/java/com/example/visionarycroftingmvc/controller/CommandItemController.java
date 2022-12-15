@@ -35,9 +35,6 @@ public class CommandItemController {
     @GetMapping("/all_items")
     public String getAll(Model model){
         model.addAttribute("commandeItems",commandeItemService.findAll());
-/*
-        model.addAttribute("countOfCommandeItems",commandeItemService.countCommandeItem());
-*/
         return "card";
     }
 
@@ -56,16 +53,11 @@ public class CommandItemController {
         return "redirect:/commandeItem/all_items";
 
     }
-
     @Transactional
-    @DeleteMapping("/commande/{id}/delete_item/{ref}")
-    public void deleteByRef(@PathVariable Long id ,@PathVariable String ref){
+    @GetMapping("{ref}")
+    public String deleteByRef(@PathVariable String ref){
         commandeItemService.deleteByRef(ref);
-        if(commandeItemService.findByRef(ref)==null){
-            Commande commande= commandeService.findById(id).get();
-            commandeService.updateCommandePrix(commande);
-        }
-
+        return "redirect:/commandeItem/all_items";
     }
 
     @GetMapping("/quantity/{quantity}")

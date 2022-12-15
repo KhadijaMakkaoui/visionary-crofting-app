@@ -55,6 +55,11 @@
                   <p th:text="${c.getPrix()}+ DH" class="lead fw-normal mb-0"></p>
                 </div>
               </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    <div>
+                        <a th:href="@{{ref}(ref=${c.getReference()})}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
             </div>
 
           </div>

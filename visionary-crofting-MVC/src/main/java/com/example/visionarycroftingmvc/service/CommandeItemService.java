@@ -64,7 +64,12 @@ public class CommandeItemService implements ICommandeItemService {
 
     @Override
     public void deleteByRef(String ref) {
-        commandeItemRepository.deleteByReference(ref);
+        if(commandeItemRepository.findCommandeItemByReference(ref)!=null){
+            commandeItemRepository.deleteByReference(ref);
+        }
+        else {
+            throw new RuntimeException("CommandeItem does not exist");
+        }
     }
 
     @Override
